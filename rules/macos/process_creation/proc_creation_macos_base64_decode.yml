@@ -14,10 +14,13 @@ logsource:
     category: process_creation
     product: macos
 detection:
-    selection:
+    selection_base64:
         Image: '/usr/bin/base64'
         CommandLine|contains: '-d'
-    condition: selection
+    selection_base32:
+        Image: '/usr/bin/base32'
+        CommandLine|contains: '-d'
+    condition: 1 of selection_*
 falsepositives:
     - Legitimate activities
 level: low
